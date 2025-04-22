@@ -19,6 +19,18 @@ class StringCalculator:
         
         if "," in numbers:
             parts = numbers.split(",")
+            
+            # Check for negative numbers
+            negatives = [int(part) for part in parts if int(part) < 0]
+            if negatives:
+                neg_str = ", ".join(str(n) for n in negatives)
+                raise ValueError(f"negatives not allowed: {neg_str}")
+            
             return sum(int(part) for part in parts)
         
-        return int(numbers) 
+        # Check for single negative number
+        num = int(numbers)
+        if num < 0:
+            raise ValueError(f"negatives not allowed: {numbers}")
+        
+        return num 
