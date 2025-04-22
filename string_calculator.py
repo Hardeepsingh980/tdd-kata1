@@ -9,22 +9,26 @@ class StringCalculator:
         
         # Check for custom delimiter
         if numbers.startswith("//"):
-            # Handle delimiter of any length with [delimiter] format
+            # Handle multiple delimiters with [delim1][delim2] format
             if numbers.startswith("//[") and "]" in numbers:
-                match = re.match(r"//\[(.*?)\]\n(.*)", numbers)
+                # Extract all delimiters
+                delimiters = re.findall(r'\[(.*?)\]', numbers)
+                
+                # Extract numbers part
+                match = re.match(r'//(?:\[.*?\])+\n(.*)', numbers)
                 if match:
-                    delimiter = match.group(1)
-                    numbers = match.group(2)
+                    numbers = match.group(1)
+                    
+                    # Replace each delimiter with comma
+                    for d in delimiters:
+                        numbers = numbers.replace(d, ",")
             else:
                 delimiter_line, numbers = numbers.split("\n", 1)
                 delimiter = delimiter_line[2:]
+                numbers = numbers.replace(delimiter, ",")
         
-        # Replace new lines with delimiter
+        # Replace new lines with comma
         numbers = numbers.replace("\n", ",")
-        
-        # Replace delimiter with comma for consistent processing
-        if delimiter != ",":
-            numbers = numbers.replace(delimiter, ",")
         
         if "," in numbers:
             parts = numbers.split(",")
