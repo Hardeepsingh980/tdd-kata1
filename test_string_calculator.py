@@ -19,6 +19,10 @@ class TestStringCalculator(unittest.TestCase):
     def test_multiple_numbers(self):
         self.assertEqual(6, self.calculator.add("1,2,3"))
         self.assertEqual(10, self.calculator.add("1,2,3,4"))
+    
+    def test_newlines_between_numbers(self):
+        self.assertEqual(6, self.calculator.add("1\n2,3"))
+        self.assertEqual(7, self.calculator.add("1,2\n4"))
 
 if __name__ == "__main__":
     unittest.main() 
