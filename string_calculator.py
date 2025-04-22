@@ -26,11 +26,13 @@ class StringCalculator:
                 neg_str = ", ".join(str(n) for n in negatives)
                 raise ValueError(f"negatives not allowed: {neg_str}")
             
-            return sum(int(part) for part in parts)
+            # Ignore numbers bigger than 1000
+            return sum(int(part) for part in parts if int(part) <= 1000)
         
         # Check for single negative number
         num = int(numbers)
         if num < 0:
             raise ValueError(f"negatives not allowed: {numbers}")
         
-        return num 
+        # Ignore numbers bigger than 1000
+        return num if num <= 1000 else 0 
