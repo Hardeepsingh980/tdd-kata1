@@ -1,6 +1,6 @@
 # String Calculator TDD Kata
 
-A simple string calculator implementation following Test-Driven Development principles.
+A string calculator implementation following Test-Driven Development principles. This project demonstrates a step-by-step TDD approach with commits at each stage to show the code evolution.
 
 ## Features
 
@@ -16,30 +16,42 @@ The calculator can:
 - Support delimiters of any length with format `//[delimiter]\n` (e.g., "//[***]\n1***2***3")
 - Allow multiple delimiters with format `//[delim1][delim2]\n` (e.g., "//[*][%]\n1*2%3")
 
-## How to Run Tests
+## TDD Approach
+
+This project was developed using a strict TDD approach, with the following steps for each feature:
+
+1. **RED**: Write a failing test
+2. **GREEN**: Write the minimal code to make the test pass
+3. **REFACTOR**: Refactor the code while ensuring tests still pass
+
+### Commit History
+
+Each step has been committed separately to show the evolution:
+
+1. TDD Step 1: Empty string returns 0
+2. TDD Step 2: Handle single number
+3. TDD Step 3: Handle two numbers
+4. TDD Step 4: Handle unknown amount of numbers
+5. TDD Step 5: Handle new lines between numbers
+6. TDD Step 6: Handle custom delimiters
+7. TDD Step 7: Handle negative numbers - throw exception
+8. TDD Step 8: Ignore numbers bigger than 1000
+9. TDD Step 9: Handle delimiters of any length
+10. TDD Step 10: Handle multiple delimiters
+
+## Running the Tests
 
 ```bash
 python3 -m unittest test_string_calculator.py
 ```
 
-Use the `-v` flag for more verbose output:
+For verbose output:
 
 ```bash
 python3 -m unittest test_string_calculator.py -v
 ```
 
-## Development Approach
+## Files
 
-This project was developed following TDD (Test-Driven Development) principles:
-
-1. Write a failing test for a specific functionality
-2. Write the minimal code to make the test pass
-3. Refactor the code while ensuring tests still pass
-4. Repeat for each new feature
-
-Each feature was implemented incrementally, with tests driving the design and implementation decisions.
-
-## Code Structure
-
-- `string_calculator.py` - Contains the StringCalculator class with the add method
-- `test_string_calculator.py` - Contains the unit tests for verifying functionality
+- `string_calculator.py`: The string calculator implementation
+- `test_string_calculator.py`: The test cases for the string calculator
