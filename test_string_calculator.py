@@ -41,6 +41,10 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(2, self.calculator.add("2,1001"))
         self.assertEqual(1002, self.calculator.add("2,1000"))
         self.assertEqual(5, self.calculator.add("5,1001,2000"))
+    
+    def test_delimiter_of_any_length(self):
+        self.assertEqual(6, self.calculator.add("//[***]\n1***2***3"))
+        self.assertEqual(10, self.calculator.add("//[--]\n5--5"))
 
 if __name__ == "__main__":
     unittest.main() 

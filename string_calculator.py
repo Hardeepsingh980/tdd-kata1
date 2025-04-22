@@ -1,3 +1,5 @@
+import re
+
 class StringCalculator:
     def add(self, numbers):
         if numbers == "":
@@ -7,8 +9,15 @@ class StringCalculator:
         
         # Check for custom delimiter
         if numbers.startswith("//"):
-            delimiter_line, numbers = numbers.split("\n", 1)
-            delimiter = delimiter_line[2:]
+            # Handle delimiter of any length with [delimiter] format
+            if numbers.startswith("//[") and "]" in numbers:
+                match = re.match(r"//\[(.*?)\]\n(.*)", numbers)
+                if match:
+                    delimiter = match.group(1)
+                    numbers = match.group(2)
+            else:
+                delimiter_line, numbers = numbers.split("\n", 1)
+                delimiter = delimiter_line[2:]
         
         # Replace new lines with delimiter
         numbers = numbers.replace("\n", ",")
